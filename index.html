@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kachaw — New York</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF8F3;
+    --forest:#1F2E28;
+    --forest-soft:#2A3D35;
+    --terracotta:#B5654A;
+    --stone:#D8CFBF;
+    --ink:#171512;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--terracotta);
+    font-weight:600;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,248,243,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(31,46,40,0.1);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;
+    max-width:1100px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand svg{width:30px;height:30px;overflow:visible;}
+
+  /* logo: eye blinks, then morphs into the mug mark */
+  .logo-eye .eye-group{opacity:0;animation:eyeFade 2.2s ease forwards;}
+  .logo-eye .mug-group{opacity:1;animation:mugFade 2.2s ease forwards;}
+  .logo-eye .lid-top{transform:translateY(-20px);animation:lidTop 2.2s ease forwards;}
+  .logo-eye .lid-bottom{transform:translateY(20px);animation:lidBottom 2.2s ease forwards;}
+
+  @keyframes eyeFade{
+    0%{opacity:1;transform:scale(1) rotate(0deg);}
+    40%{opacity:1;transform:scale(1) rotate(0deg);}
+    62%{opacity:0;transform:scale(.55) rotate(12deg);}
+    100%{opacity:0;transform:scale(.55) rotate(12deg);}
+  }
+  @keyframes mugFade{
+    0%{opacity:0;transform:scale(.65) rotate(-10deg);}
+    45%{opacity:0;transform:scale(.65) rotate(-10deg);}
+    72%{opacity:1;transform:scale(1.06) rotate(2deg);}
+    88%,100%{opacity:1;transform:scale(1) rotate(0deg);}
+  }
+  @keyframes lidTop{
+    0%,6%,26%,100%{transform:translateY(-20px);}
+    15%{transform:translateY(0);}
+  }
+  @keyframes lidBottom{
+    0%,6%,26%,100%{transform:translateY(20px);}
+    15%{transform:translateY(0);}
+  }
+
+  .brand span{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:20px;
+    letter-spacing:.02em;
+  }
+  nav.links{display:flex;align-items:center;gap:36px;}
+  nav.links a.navlink{
+    font-size:14px;font-weight:500;color:var(--forest);
+    position:relative;
+  }
+  nav.links a.navlink::after{
+    content:'';position:absolute;left:0;bottom:-4px;
+    width:0;height:1px;background:var(--terracotta);
+    transition:width .3s ease;
+  }
+  nav.links a.navlink:hover::after{width:100%;}
+  .btn{
+    display:inline-block;
+    font-family:var(--font-body);
+    font-size:13px;font-weight:600;
+    letter-spacing:.04em;
+    padding:11px 22px;
+    border-radius:2px;
+    transition:all .25s ease;
+    cursor:pointer;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--forest);color:var(--cream);}
+  .btn-primary:hover{background:var(--terracotta);}
+  .btn-ghost{border:1px solid var(--forest);color:var(--forest);}
+  .btn-ghost:hover{background:var(--forest);color:var(--cream);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:110px 32px 100px;
+    max-width:1100px;margin:0 auto;
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:60px;
+    align-items:center;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(56px,8vw,96px);
+    line-height:0.95;
+    letter-spacing:-0.01em;
+    margin:14px 0 22px;
+    color:var(--forest);
+  }
+  .hero p{
+    font-size:17px;
+    color:#4b4a45;
+    max-width:44ch;
+    margin-bottom:34px;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-mark{
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero-mark .ring{
+    position:absolute;
+    width:340px;height:340px;
+    border:1px solid rgba(31,46,40,0.18);
+    border-radius:50%;
+  }
+  .hero-mark svg{width:150px;height:150px;position:relative;z-index:2;}
+  .steam{
+    stroke:var(--forest);
+    stroke-width:2;
+    fill:none;
+    stroke-linecap:round;
+    opacity:.55;
+    transform-origin:center;
+    animation:rise 3.4s ease-in-out infinite;
+  }
+  .steam.s2{animation-delay:.6s;}
+  .steam.s3{animation-delay:1.2s;}
+  @keyframes rise{
+    0%{transform:translateY(6px);opacity:0;}
+    30%{opacity:.55;}
+    100%{transform:translateY(-14px);opacity:0;}
+  }
+
+  /* ---------- Section shell ---------- */
+  section{padding:96px 32px;}
+  .section-head{max-width:640px;margin:0 auto 56px;text-align:center;}
+  .section-head h2{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(32px,4vw,44px);
+    color:var(--forest);
+    margin:12px 0 14px;
+  }
+  .section-head p{color:#4b4a45;font-size:16px;}
+
+  /* ---------- About ---------- */
+  .about{background:var(--forest);color:var(--cream);}
+  .about .wrap{
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:center;
+  }
+  .about .eyebrow{color:var(--stone);}
+  .about h2{
+    font-family:var(--font-display);font-weight:500;
+    font-size:clamp(30px,4vw,42px);
+    line-height:1.15;
+    margin:14px 0 20px;
+  }
+  .about p{color:rgba(250,248,243,0.78);font-size:16px;max-width:52ch;}
+  .about .stat-row{display:flex;gap:40px;margin-top:36px;}
+  .about .stat b{
+    font-family:var(--font-display);
+    display:block;font-size:34px;font-weight:500;color:var(--terracotta);
+  }
+  .about .stat span{font-size:13px;color:var(--stone);}
+
+  /* ---------- Menu ---------- */
+  .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:rgba(31,46,40,0.12);
+    border:1px solid rgba(31,46,40,0.12);
+    max-width:1100px;margin:0 auto;
+  }
+  .menu-item{
+    background:var(--cream);
+    padding:40px 24px;
+    text-align:center;
+    transition:opacity .4s ease;
+  }
+  .menu-grid:hover .menu-item:not(:hover){opacity:.45;}
+  .menu-icon{
+    width:52px;height:52px;
+    margin:0 auto 20px;
+    color:var(--forest);
+    transition:transform .6s cubic-bezier(.2,.8,.2,1), color .4s ease;
+  }
+  .menu-item:hover .menu-icon{
+    transform:rotate(360deg) scale(1.22);
+    color:var(--terracotta);
+  }
+  .menu-item h3{
+    font-family:var(--font-display);
+    font-weight:500;font-size:19px;
+    margin-bottom:6px;
+    opacity:0;
+    animation:none;
+  }
+  .menu-item .desc{
+    font-size:13px;color:#6b6a63;margin-bottom:14px;min-height:32px;
+  }
+  .menu-item .price{
+    font-size:14px;font-weight:600;color:var(--terracotta);
+    letter-spacing:.02em;
+    opacity:0;
+    transform:translateY(6px);
+    transition:opacity .45s ease, transform .45s ease;
+  }
+  .menu-item:hover .price{opacity:1;transform:translateY(0);}
+  .menu-item h3{opacity:1;} /* name always visible, only price pops */
+  .menu-item .desc{opacity:1;}
+
+  .category-label{
+    max-width:1100px;margin:64px auto 24px;
+    display:flex;align-items:center;gap:16px;
+  }
+  .category-label span{
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--forest);font-weight:600;white-space:nowrap;
+  }
+  .category-label .line{height:1px;background:rgba(31,46,40,0.18);width:100%;}
+
+  /* ---------- Order ---------- */
+  .order{background:var(--stone);}
+  .order .wrap{
+    display:flex;align-items:center;justify-content:space-between;gap:40px;
+    flex-wrap:wrap;
+  }
+  .order h2{
+    font-family:var(--font-display);font-weight:500;
+    font-size:clamp(28px,4vw,38px);color:var(--forest);
+    max-width:14ch;
+  }
+  .order p{max-width:38ch;color:#4b4a45;margin-top:12px;}
+
+  /* ---------- Visit ---------- */
+  .visit .wrap{
+    display:grid;grid-template-columns:1fr 1fr;gap:60px;
+  }
+  .visit-block h4{
+    font-family:var(--font-display);font-weight:500;
+    font-size:20px;color:var(--forest);margin-bottom:10px;
+  }
+  .visit-block p{color:#4b4a45;font-size:15px;}
+  .visit-block .note{font-size:13px;color:var(--terracotta);margin-top:10px;}
+
+  /* ---------- Designer credit ---------- */
+  .credit{background:var(--forest);color:var(--cream);}
+  .credit .wrap{
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    gap:18px;max-width:520px;
+  }
+  .credit .eyebrow{color:var(--terracotta);}
+  .credit h2{
+    font-family:var(--font-display);font-weight:500;
+    font-size:clamp(26px,3.4vw,32px);
+  }
+  .credit p{color:rgba(250,248,243,0.75);font-size:15px;}
+  .credit .contact-list{
+    display:flex;gap:24px;flex-wrap:wrap;justify-content:center;
+    margin-top:6px;
+  }
+  .credit .contact-list a{
+    font-size:14px;font-weight:500;
+    border-bottom:1px solid rgba(250,248,243,0.35);
+    padding-bottom:2px;
+    transition:border-color .25s ease, color .25s ease;
+  }
+  .credit .contact-list a:hover{border-color:var(--terracotta);color:var(--terracotta);}
+  .credit .edit-note{
+    margin-top:18px;font-size:12px;color:rgba(250,248,243,0.45);
+    max-width:46ch;
+  }
+
+  footer{
+    padding:28px 32px;text-align:center;
+    font-size:12px;color:#6b6a63;
+    background:var(--cream);
+  }
+
+  @media(max-width:860px){
+    .hero{grid-template-columns:1fr;text-align:center;padding-top:70px;}
+    .hero .eyebrow,
+    .hero h1,
+    .hero p{text-align:left;}
+    .hero-ctas{justify-content:center;}
+    .hero-mark{order:-1;margin-bottom:20px;}
+    .about .wrap{grid-template-columns:1fr;text-align:left;}
+    .menu-grid{grid-template-columns:repeat(2,1fr);}
+    .visit .wrap{grid-template-columns:1fr;}
+    nav.links{display:none;}
+    .order .wrap{justify-content:center;text-align:center;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="brand" id="brandLogo">
+      <svg class="logo-eye" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g class="eye-group">
+          <path d="M4 24C11 13 18 13 24 13C30 13 37 13 44 24C37 35 30 35 24 35C18 35 11 35 4 24Z" stroke="#1F2E28" stroke-width="2"/>
+          <circle cx="24" cy="24" r="6" fill="#B5654A"/>
+        </g>
+        <g class="mug-group">
+          <path d="M10 18h22v13a8 8 0 0 1-8 8h-6a8 8 0 0 1-8-8V18Z" stroke="#1F2E28" stroke-width="2"/>
+          <path d="M32 21h3a5 5 0 0 1 0 10h-3" stroke="#1F2E28" stroke-width="2"/>
+          <path d="M17 10c-1.5 1.5-1.5 3 0 4.5" stroke="#B5654A" stroke-width="2" stroke-linecap="round"/>
+          <path d="M23 10c-1.5 1.5-1.5 3 0 4.5" stroke="#B5654A" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <rect class="lid-top" x="2" y="4" width="44" height="20" fill="#FAF8F3"/>
+        <rect class="lid-bottom" x="2" y="24" width="44" height="20" fill="#FAF8F3"/>
+      </svg>
+      <span>Kachaw</span>
+    </a>
+    <nav class="links">
+      <a class="navlink" href="#menu">Menu</a>
+      <a class="navlink" href="#visit">Visit</a>
+      <a class="navlink" href="#contact">Contact</a>
+    </nav>
+    <a href="#order" class="btn btn-primary">Order</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div>
+    <p class="eyebrow">New York — unlisted, by word of mouth</p>
+    <h1>Kachaw</h1>
+    <p>A quiet counter for people who are recognized everywhere else. Exceptional espresso, four pastries, and staff who remember your order and forget your name.</p>
+    <div class="hero-ctas">
+      <a href="#menu" class="btn btn-primary">View the menu</a>
+      <a href="#order" class="btn btn-ghost">Order ahead</a>
+    </div>
+  </div>
+  <div class="hero-mark">
+    <div class="ring"></div>
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="steam s1" d="M46 30c-4 4-4 8 0 12" />
+      <path class="steam s2" d="M60 30c-4 4-4 8 0 12" />
+      <path class="steam s3" d="M74 30c-4 4-4 8 0 12" />
+      <path d="M28 46h56v32a18 18 0 0 1-18 18H46a18 18 0 0 1-18-18V46Z" stroke="#1F2E28" stroke-width="2.5"/>
+      <path d="M84 52h6a12 12 0 0 1 0 24h-6" stroke="#1F2E28" stroke-width="2.5"/>
+      <line x1="28" y1="94" x2="84" y2="94" stroke="#B5654A" stroke-width="2.5"/>
+    </svg>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Discretion, poured hot</p>
+      <h2>Not hidden. Just not for everyone.</h2>
+    </div>
+    <div>
+      <p>Kachaw sits behind an unmarked door on a quiet block in Manhattan. There's no sign, no queue, and no phones out at the counter. We built it for a clientele that's tired of being watched — low light, wide seating, one entrance, one exit. The coffee is the loudest thing in the room.</p>
+      <div class="stat-row">
+        <div class="stat"><b>4</b><span>drinks, done properly</span></div>
+        <div class="stat"><b>4</b><span>snacks, made daily</span></div>
+        <div class="stat"><b>1</b><span>door in, door out</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="section-head">
+    <p class="eyebrow">The menu</p>
+    <h2>Four drinks. Four snacks.</h2>
+    <p>No syrups, no seasonal menu, nothing you have to explain to the barista. Hover an item.</p>
+  </div>
+
+  <div class="category-label"><span>Coffee</span><div class="line"></div></div>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <svg class="menu-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 18h22v13a8 8 0 0 1-8 8h-6a8 8 0 0 1-8-8V18Z" stroke="currentColor" stroke-width="2"/><path d="M32 21h3a5 5 0 0 1 0 10h-3" stroke="currentColor" stroke-width="2"/></svg>
+      <h3>Espresso</h3>
+      <p class="desc">Single origin, pulled short</p>
+      <p class="price">$6</p>
+    </div>
+    <div class="menu-item">
+      <svg class="menu-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 18h22v13a8 8 0 0 1-8 8h-6a8 8 0 0 1-8-8V18Z" stroke="currentColor" stroke-width="2"/><path d="M32 21h3a5 5 0 0 1 0 10h-3" stroke="currentColor" stroke-width="2"/><path d="M14 22h14" stroke="currentColor" stroke-width="1.5"/></svg>
+      <h3>Cortado</h3>
+      <p class="desc">Equal parts espresso, milk</p>
+      <p class="price">$7</p>
+    </div>
+    <div class="menu-item">
+      <svg class="menu-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 18h22v13a8 8 0 0 1-8 8h-6a8 8 0 0 1-8-8V18Z" stroke="currentColor" stroke-width="2"/><path d="M32 21h3a5 5 0 0 1 0 10h-3" stroke="currentColor" stroke-width="2"/><circle cx="21" cy="24" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+      <h3>Flat white</h3>
+      <p class="desc">Double ristretto, steamed milk</p>
+      <p class="price">$7.50</p>
+    </div>
+    <div class="menu-item">
+      <svg class="menu-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 14h20l-2 22a4 4 0 0 1-4 4h-8a4 4 0 0 1-4-4L14 14Z" stroke="currentColor" stroke-width="2"/><path d="M12 14h24" stroke="currentColor" stroke-width="2"/></svg>
+      <h3>Cascara iced</h3>
+      <p class="desc">Coffee cherry tea, cold</p>
+      <p class="price">$8</p>
+    </div>
+  </div>
+
+  <div class="category-label"><span>Snacks</span><div class="line"></div></div>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <svg class="menu-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 26c4-10 12-14 16-14s12 4 16 14c-6 4-10 2-16-2-6 4-10 6-16 2Z" stroke="currentColor" stroke-width="2"/></svg>
+      <h3>Almond croissant</h3>
+      <p class="desc">Laminated in house, daily</p>
+      <p class="price">$7</p>
+    </div>
+    <div class="menu-item">
+      <svg class="menu-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="2"/><circle cx="19" cy="20" r="1.6" fill="currentColor"/><circle cx="28" cy="19" r="1.6" fill="currentColor"/><circle cx="24" cy="28" r="1.6" fill="currentColor"/></svg>
+      <h3>Brown butter cookie</h3>
+      <p class="desc">Flaked salt, dark chocolate</p>
+      <p class="price">$5</p>
+    </div>
+    <div class="menu-item">
+      <svg class="menu-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="16" width="24" height="16" rx="2" stroke="currentColor" stroke-width="2"/><line x1="12" y1="24" x2="36" y2="24" stroke="currentColor" stroke-width="1.5"/></svg>
+      <h3>Olive oil cake</h3>
+      <p class="desc">Citrus glaze, one slice</p>
+      <p class="price">$8</p>
+    </div>
+    <div class="menu-item">
+      <svg class="menu-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="18" width="28" height="10" rx="1" stroke="currentColor" stroke-width="2"/><path d="M10 18l4-6h20l4 6" stroke="currentColor" stroke-width="2"/></svg>
+      <h3>Seeded toast</h3>
+      <p class="desc">Cultured butter, sea salt</p>
+      <p class="price">$9</p>
+    </div>
+  </div>
+</section>
+
+<section class="order" id="order">
+  <div class="wrap">
+    <h2>Order ahead, skip the room.</h2>
+    <p>Pickup and delivery within six blocks. Connect your ordering platform of choice here (Toast, Square, or a private line) to make this button live.</p>
+  </div>
+  <a href="#" class="btn btn-primary">Start an order</a>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="visit-block">
+      <p class="eyebrow">Visit</p>
+      <h4>Address</h4>
+      <p>Unmarked door, West Village<br>New York, NY 10014</p>
+      <p class="note">Exact address shared after your first order.</p>
+    </div>
+    <div class="visit-block">
+      <p class="eyebrow">Hours</p>
+      <h4>Open daily</h4>
+      <p>Monday – Friday, 7am – 4pm<br>Saturday – Sunday, 8am – 3pm</p>
+    </div>
+  </div>
+</section>
+
+<section class="credit" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Design credit</p>
+    <h2>Site and branding by [Your Name]</h2>
+    <p>Kachaw's identity, palette, and this website were designed and built as a commissioned project. Available for select branding and web work.</p>
+    <div class="contact-list">
+      <a href="mailto:you@example.com">you@example.com</a>
+      <a href="tel:+639662965547">0966 296 5547</a>
+      <a href="https://glynsprtflio.my.canva.site/helloglynportfolio" target="_blank" rel="noopener">glynsprtflio.my.canva.site</a>
+    </div>
+    <p class="edit-note">Replace the name, email, phone, and portfolio link above with your own before this goes live.</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Kachaw. All rights reserved.
+</footer>
+
+<script>
+  (function(){
+    var brand = document.getElementById('brandLogo');
+    if(!brand) return;
+    var parts = brand.querySelectorAll('.eye-group, .mug-group, .lid-top, .lid-bottom');
+    brand.addEventListener('mouseenter', function(){
+      parts.forEach(function(el){
+        el.style.animation = 'none';
+        void el.offsetWidth; /* force reflow so the animation restarts */
+        el.style.animation = '';
+      });
+    });
+  })();
+</script>
+</body>
+</html>
